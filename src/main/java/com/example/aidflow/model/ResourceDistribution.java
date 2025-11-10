@@ -27,11 +27,9 @@ public class ResourceDistribution {
     private LocalDateTime distributedAt;
     @Column(nullable = false)
     private LocalDateTime createdAt;
-    @Column(nullable = false)
     @JoinColumn(name = "project_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Project project;
-    @Column(nullable = false)
     @JoinColumn(name = "ngo_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Ngo ngo;

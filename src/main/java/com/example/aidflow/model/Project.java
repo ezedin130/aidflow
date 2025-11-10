@@ -38,7 +38,6 @@ public class Project {
     private LocalDate endDate;
     @Column(nullable = false)
     private LocalDateTime createdAt;
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ngo_id")
     private Ngo ngo;

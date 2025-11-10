@@ -32,7 +32,6 @@ public class Ngo {
     private UserStatus status;
     @Column(nullable = false)
     private LocalDateTime createdAt;
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
