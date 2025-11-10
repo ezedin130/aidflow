@@ -5,7 +5,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class resourceDistOutDto {
+public class ResourceDistOutDto {
     private Long id;
     private String resourceName;
     private int quantity;
