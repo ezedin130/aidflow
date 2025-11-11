@@ -1,5 +1,6 @@
 package com.example.aidflow.service;
 
+import com.example.aidflow.constant.ProjectStatus;
 import com.example.aidflow.dto.resourceDistributionDto.ResourceDistInDto;
 import com.example.aidflow.dto.resourceDistributionDto.ResourceDistOutDto;
 import com.example.aidflow.mapper.ResourceDistMapper;
@@ -30,6 +31,9 @@ public class ResourceDistService {
     public ResourceDistOutDto createDist(ResourceDistInDto dto){
         Project project = projectRepo.findById(dto.getProject())
                 .orElseThrow(()-> new RuntimeException("Project not found"));
+        if (project.getStatus() != ProjectStatus.ACTIVE) {
+            throw new IllegalStateException("Cannot distribute resources: Project is not active");
+        }
         Ngo ngo = ngoRepo.findById(dto.getNgo())
                 .orElseThrow(()-> new RuntimeException("Ngo not found"));
         ResourceDistribution dist = mapper.toEntity(dto,project,ngo);
