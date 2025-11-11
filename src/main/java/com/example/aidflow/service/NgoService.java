@@ -1,5 +1,6 @@
 package com.example.aidflow.service;
 
+import com.example.aidflow.constant.RoleType;
 import com.example.aidflow.dto.ngoDto.NgoInDto;
 import com.example.aidflow.dto.ngoDto.NgoOutDto;
 import com.example.aidflow.mapper.NgoMapper;
@@ -28,15 +29,18 @@ public class NgoService {
         User user = userRepo.findById(dto.getUser())
                 .orElseThrow(()-> new RuntimeException("User not found"));
         Ngo ngo = mapper.toEntity(dto,user);
-        Ngo saveduser = ngoRepo.save(ngo);
-        return mapper.toDto(saveduser);
+        if (user.getRole() != RoleType.NGO) {
+            throw new IllegalStateException("User must have the NGO role to create an NGO profile");
+        }
+        Ngo savedUser = ngoRepo.save(ngo);
+        return mapper.toDto(savedUser);
     }
     public List<NgoOutDto> findAllNgo(){
         return ngoRepo.findAll().stream()
                 .map(mapper::toDto)
                 .collect(Collectors.toList());
     }
-    public Ngo findngoById(Long id){
+    public Ngo findNgoById(Long id){
         return ngoRepo.findById(id)
                 .orElseThrow(()-> new RuntimeException("Ngo not found"));
     }
