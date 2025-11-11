@@ -7,6 +7,7 @@ import com.example.aidflow.model.Ngo;
 import com.example.aidflow.model.Project;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service
@@ -16,12 +17,10 @@ public class ProjectMapper {
                 .title(dto.getTitle())
                 .description(dto.getDescription())
                 .targetAmount(dto.getTargetAmount())
-                .collectedAmount(dto.getCollectedAmount())
+                .collectedAmount(0)
+                .status(ProjectStatus.PENDING)
                 .location(dto.getLocation())
-                .status(ProjectStatus.valueOf(dto.getStatus()))
                 .createdAt(LocalDateTime.now())
-                .startDate(dto.getStartDate())
-                .endDate(dto.getEndDate())
                 .ngo(ngo)
                 .build();
     }

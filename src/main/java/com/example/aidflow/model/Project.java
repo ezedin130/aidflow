@@ -32,9 +32,9 @@ public class Project {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private ProjectStatus status;
-    @Column(nullable = false)
+    @Column()
     private LocalDate startDate;
-    @Column(nullable = false)
+    @Column()
     private LocalDate endDate;
     @Column(nullable = false)
     private LocalDateTime createdAt;
