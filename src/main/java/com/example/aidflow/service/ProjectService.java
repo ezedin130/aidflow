@@ -1,5 +1,6 @@
 package com.example.aidflow.service;
 
+import com.example.aidflow.constant.ProjectStatus;
 import com.example.aidflow.dto.projectDto.ProjectInDto;
 import com.example.aidflow.dto.projectDto.ProjectOutDto;
 import com.example.aidflow.mapper.ProjectMapper;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,9 +30,25 @@ public class ProjectService {
         Ngo ngo = ngoRepo.findById(dto.getNgo())
                 .orElseThrow(()-> new RuntimeException("Ngo not found"));
         Project project = mapper.toEntity(dto,ngo);
+        project.setStatus(ProjectStatus.PENDING);
+        if(project.getCollectedAmount() >= project.getTargetAmount()){
+            project.setStatus(ProjectStatus.ACTIVE);
+            project.setStartDate(LocalDate.now());
+        }
         Project savedProject = projectRepo.save(project);
         return mapper.toDto(savedProject);
     }
+    public ProjectOutDto completeProject(Long id) {
+        Project project = projectRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Project not found"));
+
+        project.setStatus(ProjectStatus.COMPLETED);
+        project.setEndDate(LocalDate.now());
+
+        Project updated = projectRepo.save(project);
+        return mapper.toDto(updated);
+    }
+
     public List<ProjectOutDto> findAllProjects(){
         return projectRepo.findAll().stream()
                 .map(mapper::toDto)
