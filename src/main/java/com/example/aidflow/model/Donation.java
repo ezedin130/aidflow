@@ -25,7 +25,7 @@ public class Donation {
     private PaymentStatus status;
     @Column(nullable = false)
     private LocalDateTime createdAt;
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
     @JoinColumn(name = "project_id")
