@@ -8,6 +8,5 @@ public class NgoInDto {
     private String mission;
     private String address;
     private String phone;
-    private String status;
     private Long user;
 }

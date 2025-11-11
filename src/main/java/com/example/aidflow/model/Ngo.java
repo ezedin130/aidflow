@@ -27,9 +27,6 @@ public class Ngo {
     private String address;
     @Column(nullable = false)
     private String phone;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private UserStatus status;
     @Column(nullable = false)
     private LocalDateTime createdAt;
     @ManyToOne(fetch = FetchType.LAZY)

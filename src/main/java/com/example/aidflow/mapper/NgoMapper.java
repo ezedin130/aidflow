@@ -18,7 +18,6 @@ public class NgoMapper {
                 .address(dto.getAddress())
                 .phone(dto.getPhone())
                 .createdAt(LocalDateTime.now())
-                .status(UserStatus.valueOf(dto.getStatus()))
                 .user(user)
                 .build();
     }
@@ -29,7 +28,6 @@ public class NgoMapper {
         dto.setMission(ngo.getMission());
         dto.setAddress(ngo.getAddress());
         dto.setPhone(ngo.getPhone());
-        dto.setStatus(ngo.getStatus().name());
         dto.setCreatedAt(ngo.getCreatedAt());
         dto.setUser(ngo.getUser().getId());
         return dto;

@@ -11,7 +11,6 @@ public class NgoOutDto {
     private String mission;
     private String address;
     private String phone;
-    private String status;
     private LocalDateTime createdAt;
     private Long user;
 }
