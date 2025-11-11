@@ -1,5 +1,6 @@
 package com.example.aidflow.model;
 
+import com.example.aidflow.constant.ResourceUnitType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,11 +21,10 @@ public class ResourceDistribution {
     @Column(nullable = false)
     private String resourceName;
     @Column(nullable = false)
-    private int quantity;
-    //beneficiary verified
-    //verification code
+    private double quantity;
     @Column(nullable = false)
-    private LocalDateTime distributedAt;
+    @Enumerated(EnumType.STRING)
+    private ResourceUnitType unitType;
     @Column(nullable = false)
     private LocalDateTime createdAt;
     @JoinColumn(name = "project_id")

@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 public class ResourceDistOutDto {
     private Long id;
     private String resourceName;
-    private int quantity;
-    private LocalDateTime distributedAt;
+    private double quantity;
+    private String unitType;
     private LocalDateTime createdAt;
     private Long project;
     private Long ngo;
